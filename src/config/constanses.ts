@@ -1,0 +1,23 @@
+import dotenv from 'dotenv'
+import { dirname, resolve } from 'path';
+import { fileURLToPath } from 'url';
+
+export const filename = fileURLToPath(import.meta.url);
+
+export const dirName = dirname(filename);
+
+dotenv.config({ quiet: true, path: resolve(dirName, '.env') });
+
+export const PORT = String(process.env.PORT)
+
+export const DATA_DIR = String(process.env.DATA_DIR)
+export const DATA_FILE = String(process.env.DATA_FILE)
+
+export const JSON_SIZE_LIMIT = String(process.env.JSON_SIZE_LIMIT)
+
+export const REQUEST_TIMEOUT_MS = Number(process.env.REQUEST_TIMEOUT_MS)
+
+export const WEATHER_API_URL = String(process.env.WEATHER_API_URL)
+
+export const ALLOWED_PRECIPITATION = Number(process.env.ALLOWED_PRECIPITATION)
+export const ALLOWED_WIND_SPEED = Number(process.env.ALLOWED_WIND_SPEED)
