@@ -1,0 +1,29 @@
+{
+  "name": "case_2",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MrSesbianLexovich/case_2.git"
+  },
+  "type": "module",
+  "bugs": {
+    "url": "https://github.com/MrSesbianLexovich/case_2/issues"
+  },
+  "homepage": "https://github.com/MrSesbianLexovich/case_2#readme",
+  "dependencies": {
+    "cors": "^2.8.6",
+    "dotenv": "^18.0.2",
+    "express": "^5.2.1",
+    "fs": "^0.0.1-security",
+    "helmet": "^8.3.0",
+    "path": "^0.12.7",
+    "zod": "^4.6.5"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.6",
+    "typescript": "^7.0.2"
+  }
+}
