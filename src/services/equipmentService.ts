@@ -48,6 +48,13 @@ export class EquipmentService{
             throw new AppError("EQUIPMENT_NOT_FOUND",`Оборудование с id ${id} не найдено`, 404)
         }
 
+        const requestsForEquipment = await this.EquipmentRepository.getRequests(id)
+
+        const refusedStatus = ["new", "in_progress"]
+        if (requestsForEquipment.find(request => refusedStatus.includes(request.status))){
+            throw new AppError("UNCLOSED_APPLICATIONS", `У оборудования с id ${id} есть незакрытые заявки`, 409)
+        }
+
         const deleteEquipment = await this.EquipmentRepository.delete(id)        
         return deleteEquipment
     }

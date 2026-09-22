@@ -71,5 +71,12 @@ export class EquipmentRepository{
         return equipmentIndex
     }
 
+    async getRequests(id: string){
+        const db = await getDb()
+
+        const requests = db.requests.filter(request => request.equipmentId === id)
+        return requests
+    }
+
 
 }
