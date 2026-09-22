@@ -84,4 +84,15 @@ export class RequestsService{
         }
     }
 
+    async del(id: string){
+        const request = await this.RequestsRepository.getById(id)
+
+        if (request === undefined){
+            throw new AppError("REQUEST_NOT_FOUND", `Запрос с id ${id} не найден`, 404)
+        }
+
+        const del = await this.RequestsRepository.del(id)
+        return del
+    }
+
 }

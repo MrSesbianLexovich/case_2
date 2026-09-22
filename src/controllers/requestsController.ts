@@ -43,4 +43,10 @@ export class RequestsController{
         const patch = await this.RequestsService.statusPatch(id, status)
         res.status(201).json({patch})
     }
+
+    del = async (req:Request, res:Response) => {
+        const id = String(req.params.id)
+        const del = await this.RequestsService.del(id)
+        res.status(200).json({del})
+    }
 }

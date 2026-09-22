@@ -84,4 +84,13 @@ export class RequestsRepository{
         await rewriteDb(db)
         return updatedRequest
     }
+
+    async del(id:string){
+        const db = await getDb()
+        const requestIndex = db.requests.findIndex(request => request.id === id)
+
+        db.requests.splice(requestIndex, 1)
+        await rewriteDb(db)
+        return requestIndex
+    }
 }
