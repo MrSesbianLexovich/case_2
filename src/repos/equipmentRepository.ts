@@ -62,4 +62,14 @@ export class EquipmentRepository{
         return updatedEquipment
     }
 
+    async delete(id: string){
+        const db = await getDb()
+        const equipmentIndex = db.equipment.findIndex(equipment => equipment.id === id)
+
+        db.equipment.splice(equipmentIndex, 1)
+        await rewriteDb(db)
+        return equipmentIndex
+    }
+
+
 }

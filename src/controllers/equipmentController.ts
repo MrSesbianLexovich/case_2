@@ -27,4 +27,10 @@ export class EquipmentController{
         const patch = await this.EquipmentService.patch(id, req.body)
         res.status(201).json({patch}) 
     }
+
+    del = async (req:Request, res:Response) => {
+        const id = String(req.params.id)
+        const del = await this.EquipmentService.delete(id)
+        res.status(200).json({del})
+    }
 }

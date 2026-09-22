@@ -40,4 +40,15 @@ export class EquipmentService{
         }
         return patch
     }
-}
+
+    async delete(id: string){
+        const equipment = await this.EquipmentRepository.getById(id)
+
+        if (equipment === undefined){
+            throw new AppError("EQUIPMENT_NOT_FOUND",`Оборудование с id ${id} не найдено`, 404)
+        }
+
+        const deleteEquipment = await this.EquipmentRepository.delete(id)        
+        return deleteEquipment
+    }
+    }
