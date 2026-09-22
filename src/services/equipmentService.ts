@@ -5,6 +5,7 @@ import type { EquipmentQuery } from "../types/types";
 import { randomUUID } from "crypto";
 import { AppError } from "../types/error";
 import { getForecast } from "../client/weatherClient";
+import { ALLOWED_PRECIPITATION, ALLOWED_WIND_SPEED } from "../config/constanses";
 
 export class EquipmentService{
     constructor(private readonly EquipmentRepository: EquipmentRepository){}
@@ -75,6 +76,15 @@ export class EquipmentService{
         if (!forecast){
             return undefined
         }
+
+        let allowMaintenance
+        
+        if (forecast.daily.wind_speed_10m_max[0] <= ALLOWED_WIND_SPEED && forecast.daily.precipitation_sum[0] <= ALLOWED_PRECIPITATION){
+            allowMaintenance = true
+        }else{
+            allowMaintenance = false
+        }
+        return {forecast, allowedMaintenance: allowMaintenance}
         
     }
 }
