@@ -1,6 +1,6 @@
 import { readFile, writeFile } from "fs/promises";
-import { path } from "../app";
-import type { Database } from "../types/types";
+import { path } from "../app.ts";
+import type { Database } from "../types/types.ts";
 
 export async function getDb(){
     const db = await readFile(path, "utf-8")

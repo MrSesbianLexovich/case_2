@@ -1,5 +1,5 @@
-import type { RequestsService } from "../services/requestsService";
-import { requestQuerySchema } from "../types/schemas";
+import type { RequestsService } from "../services/requestsService.ts";
+import { requestQuerySchema } from "../types/schemas.ts";
 import type { Request, Response } from 'express'
 
 export class RequestsController{

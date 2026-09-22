@@ -1,10 +1,10 @@
 import { Router } from "express";
-import { validate } from "../utils/validator";
-import { asyncHandler } from "../utils/asyncHandler";
-import { equipmentPartialSchema, equipmentQuerySchema, equipmentSchema, idSchema } from "../types/schemas";
-import { EquipmentRepository } from "../repos/equipmentRepository";
-import { EquipmentService } from "../services/equipmentService";
-import { EquipmentController } from "../controllers/equipmentController";
+import { validate } from "../utils/validator.ts";
+import { asyncHandler } from "../utils/asyncHandler.ts";
+import { equipmentPartialSchema, equipmentQuerySchema, equipmentSchema, idSchema } from "../types/schemas.ts";
+import { EquipmentRepository } from "../repos/equipmentRepository.ts";
+import { EquipmentService } from "../services/equipmentService.ts";
+import { EquipmentController } from "../controllers/equipmentController.ts";
 
 const equipmentRouter = Router()
 

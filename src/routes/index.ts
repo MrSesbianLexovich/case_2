@@ -1,5 +1,5 @@
 import { Router } from "express";
-import equipmentRouter from "./equipmentRoutes";
+import equipmentRouter from "./equipmentRoutes.ts";
 
 const router = Router()
 

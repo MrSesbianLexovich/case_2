@@ -1,7 +1,7 @@
 import type { z } from "zod";
-import { getDb, rewriteDb } from "../db";
-import { equipmentPartialSchema, equipmentRepoSchema } from "../types/schemas";
-import type { EquipmentQuery } from "../types/types";
+import { getDb, rewriteDb } from "../db/index.ts";
+import { equipmentPartialSchema, equipmentRepoSchema } from "../types/schemas.ts";
+import type { EquipmentQuery } from "../types/types.ts";
 
 export class EquipmentRepository{
 

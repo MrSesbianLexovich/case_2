@@ -1,7 +1,7 @@
 import type { z } from "zod";
-import { getDb, rewriteDb } from "../db";
-import { requestPartialSchema, requestRepoSchema, requestStatusSchema } from "../types/schemas";
-import type { RequestsQuery } from "../types/types";
+import { getDb, rewriteDb } from "../db/index.ts";
+import { requestPartialSchema, requestRepoSchema, requestStatusSchema } from "../types/schemas.ts";
+import type { RequestsQuery } from "../types/types.ts";
 
 export class RequestsRepository{
     async getAll(query: RequestsQuery){

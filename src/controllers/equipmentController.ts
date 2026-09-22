@@ -1,6 +1,6 @@
-import type { EquipmentService } from "../services/equipmentService";
+import type { EquipmentService } from "../services/equipmentService.ts";
 import type {Request,Response} from 'express'
-import { equipmentQuerySchema } from "../types/schemas";
+import { equipmentQuerySchema } from "../types/schemas.ts";
 
 export class EquipmentController{
     constructor(private readonly EquipmentService: EquipmentService){}

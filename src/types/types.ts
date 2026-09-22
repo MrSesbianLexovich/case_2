@@ -1,5 +1,5 @@
 import type { z } from "zod";
-import { equipmentQuerySchema, equipmentSchema, requestQuerySchema, requestRepoSchema } from "./schemas";
+import { equipmentQuerySchema, equipmentSchema, requestQuerySchema, requestRepoSchema } from "./schemas.ts";
 
 export type EquipmentQuery = z.infer<typeof equipmentQuerySchema>;
 

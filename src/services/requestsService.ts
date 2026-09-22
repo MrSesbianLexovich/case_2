@@ -1,10 +1,10 @@
 import type { z } from "zod";
-import type { RequestsRepository } from "../repos/requestsRepository";
-import { requestPartialSchema, requestSchema, requestStatusSchema } from "../types/schemas";
-import type { RequestsQuery } from "../types/types";
+import type { RequestsRepository } from "../repos/requestsRepository.ts";
+import { requestPartialSchema, requestSchema, requestStatusSchema } from "../types/schemas.ts";
+import type { RequestsQuery } from "../types/types.ts";
 import { randomUUID } from "crypto";
-import { AppError } from "../types/error";
-import type { EquipmentRepository } from "../repos/equipmentRepository";
+import { AppError } from "../types/error.ts";
+import type { EquipmentRepository } from "../repos/equipmentRepository.ts";
 
 export class RequestsService{
     constructor(

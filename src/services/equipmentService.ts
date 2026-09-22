@@ -1,11 +1,11 @@
 import type { z } from "zod";
-import type { EquipmentRepository } from "../repos/equipmentRepository";
-import { equipmentPartialSchema, equipmentSchema } from "../types/schemas";
-import type { EquipmentQuery } from "../types/types";
+import type { EquipmentRepository } from "../repos/equipmentRepository.ts";
+import { equipmentPartialSchema, equipmentSchema } from "../types/schemas.ts";
+import type { EquipmentQuery } from "../types/types.ts";
 import { randomUUID } from "crypto";
-import { AppError } from "../types/error";
-import { getForecast } from "../client/weatherClient";
-import { ALLOWED_PRECIPITATION, ALLOWED_WIND_SPEED } from "../config/constanses";
+import { AppError } from "../types/error.ts";
+import { getForecast } from "../client/weatherClient.ts";
+import { ALLOWED_PRECIPITATION, ALLOWED_WIND_SPEED } from "../config/constanses.ts";
 
 export class EquipmentService{
     constructor(private readonly EquipmentRepository: EquipmentRepository){}

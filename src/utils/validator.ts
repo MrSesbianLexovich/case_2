@@ -1,7 +1,7 @@
 import type { NextFunction, Request, Response } from "express";
 import { ZodError } from "zod";
 import type { ZodType } from "zod";
-import { AppError } from "../types/error";
+import { AppError } from "../types/error.ts";
 
 type Source = 'body' | 'query' | 'params'
 

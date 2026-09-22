@@ -2,8 +2,10 @@
   "name": "case_2",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
-  "scripts": {},
+  "main": "",
+  "scripts": {
+    "start": "node src/server.ts"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/MrSesbianLexovich/case_2.git"

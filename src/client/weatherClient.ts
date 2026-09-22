@@ -1,7 +1,7 @@
 import type { z } from "zod";
-import { REQUEST_TIMEOUT_MS, WEATHER_API_URL } from "../config/constanses";
-import { AppError } from "../types/error";
-import { equipmentLocationSchema, forecastSchema } from "../types/schemas";
+import { REQUEST_TIMEOUT_MS, WEATHER_API_URL } from "../config/constanses.ts";
+import { AppError } from "../types/error.ts";
+import { equipmentLocationSchema, forecastSchema } from "../types/schemas.ts";
 
 async function fetchWithTimeout(url:URL, timeout = REQUEST_TIMEOUT_MS){
     const controller = new AbortController()
