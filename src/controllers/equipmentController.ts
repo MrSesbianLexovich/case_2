@@ -10,4 +10,9 @@ export class EquipmentController{
         const equipment = await this.EquipmentService.getAll(query)
         res.status(200).json({equipment})
     }
+
+    add = async (req: Request, res:Response) => {
+            const equipment = await this.EquipmentService.add(req.body)
+            res.status(201).json({equipment})
+    }
 }

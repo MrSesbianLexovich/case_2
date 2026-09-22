@@ -1,4 +1,6 @@
-import { getDb } from "../db";
+import type { z } from "zod";
+import { getDb, rewriteDb } from "../db";
+import { equipmentRepoSchema } from "../types/schemas";
 import type { EquipmentQuery } from "../types/types";
 
 export class EquipmentRepository{
@@ -20,5 +22,18 @@ export class EquipmentRepository{
         const end = start + query.limit
 
         return equipment.slice(start, end)
+    }
+
+    async add(body: z.infer<typeof equipmentRepoSchema>){
+        const db = await getDb()
+    
+        db.equipment.push(body)
+        await rewriteDb(db)
+        return body    
+    }
+
+    async getBySerialNumber(serialNumber: string){
+        const db = await getDb()
+        return db.equipment.find(equipment => equipment.serialNumber === serialNumber) || null
     }
 }
