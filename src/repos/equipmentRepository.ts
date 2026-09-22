@@ -36,4 +36,9 @@ export class EquipmentRepository{
         const db = await getDb()
         return db.equipment.find(equipment => equipment.serialNumber === serialNumber) || null
     }
+
+    async getById(id: string){
+        const db = await getDb()
+        return db.equipment.find(equipment => equipment.id === id)
+    }
 }

@@ -15,4 +15,10 @@ export class EquipmentController{
             const equipment = await this.EquipmentService.add(req.body)
             res.status(201).json({equipment})
     }
+
+    getById = async (req: Request, res:Response) => {
+        const id = String(req.params.id)
+        const equipment = await this.EquipmentService.getById(id)
+        res.status(200).json({equipment})
+    }
 }

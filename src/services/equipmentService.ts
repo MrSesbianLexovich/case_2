@@ -24,4 +24,12 @@ export class EquipmentService{
         }
         return await this.EquipmentRepository.add(data)
     }
+
+    async getById(id: string){
+        const equipment = await this.EquipmentRepository.getById(id)
+        if (equipment === undefined){
+            throw new AppError("EQUIPMENT_NOT_FOUND",`Оборудование с id ${id} не найдено`, 404)
+        }
+        return equipment
+    }
 }
