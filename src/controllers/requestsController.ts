@@ -30,5 +30,10 @@ export class RequestsController{
         const request = await this.RequestsService.getById(id)
         res.status(200).json({request: request})
     }
-    
+
+    patch = async (req:Request, res:Response) => {
+        const id = String(req.params.id)
+        const patch = await this.RequestsService.patch(id,req.body)
+        res.status(201).json({patch})
+    }
 }
