@@ -33,4 +33,11 @@ export class RequestsRepository{
         await rewriteDb(db)
         return request
     }
+
+    async getById(id: string){
+        const db = await getDb()
+        const request = db.requests.find(request => request.id === id)
+
+        return request
+    }
 }

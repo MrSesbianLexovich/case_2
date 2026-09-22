@@ -3,6 +3,7 @@ import type { RequestsRepository } from "../repos/requestsRepository";
 import { requestSchema } from "../types/schemas";
 import type { RequestsQuery } from "../types/types";
 import { randomUUID } from "crypto";
+import { AppError } from "../types/error";
 
 export class RequestsService{
     constructor(private readonly RequestsRepository: RequestsRepository){}
@@ -23,4 +24,13 @@ export class RequestsService{
         }
         return await this.RequestsRepository.add(request)
     }
+
+    async getById(id: string){
+        const request = await this.RequestsRepository.getById(id)
+        if (request === undefined){
+            throw new AppError("REQUEST_NOT_FOUND", `Запрос с id ${id} не найден`, 404)
+        }
+        return 
+    }
+
 }

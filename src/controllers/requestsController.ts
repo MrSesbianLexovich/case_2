@@ -24,4 +24,11 @@ export class RequestsController{
         
         res.status(201).json({request})
     }
+
+    getById = async (req:Request, res:Response) => {
+        const id = String(req.params.id)
+        const request = await this.RequestsService.getById(id)
+        res.status(200).json({request: request})
+    }
+    
 }
