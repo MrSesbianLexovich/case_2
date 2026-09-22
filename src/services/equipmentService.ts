@@ -4,6 +4,7 @@ import { equipmentPartialSchema, equipmentSchema } from "../types/schemas";
 import type { EquipmentQuery } from "../types/types";
 import { randomUUID } from "crypto";
 import { AppError } from "../types/error";
+import { getForecast } from "../client/weatherClient";
 
 export class EquipmentService{
     constructor(private readonly EquipmentRepository: EquipmentRepository){}
@@ -60,7 +61,20 @@ export class EquipmentService{
     }
 
     async getRequests(id: string){
-        const requests = this.EquipmentRepository.getRequests(id)
-        return requests
+        return await this.EquipmentRepository.getRequests(id)
+    }
+
+    async getWeather(id: string){
+        const equipment = await this.EquipmentRepository.getById(id)
+
+        if (equipment === undefined){
+            throw new AppError("EQUIPMENT_NOT_FOUND",`Оборудование с id ${id} не найдено`, 404)
+        }
+
+        const forecast = await getForecast(equipment.location)
+        if (!forecast){
+            return undefined
+        }
+        
     }
 }

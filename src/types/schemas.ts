@@ -54,4 +54,29 @@ export const requestRepoSchema = requestSchema.extend({
     id: uuid(), 
     status:requestStatusTypes, 
     createdAt: z.iso.datetime(), 
-    updatedAt: z.iso.datetime()})
+    updatedAt: z.iso.datetime()
+})
+
+export const forecastSchema = z.object({
+    latitude: z.number(),
+    longitude: z.number(),
+    generationtime_ms: z.number(),
+    utc_offset_seconds: z.number(),
+    timezone: z.string(),
+    timezone_abbreviation: z.string(),
+    elevation: z.number(),
+    daily_units: z.object({
+        time: z.string(),
+        temperature_2m_min: z.string(),
+        temperature_2m_max: z.string(),
+        precipitation_sum: z.string(),
+        wind_speed_10m_max: z.string(),
+    }),
+    daily: z.object({
+        time: z.array(z.string()),
+        temperature_2m_min: z.array(z.number()),
+        temperature_2m_max: z.array(z.number()),
+        precipitation_sum: z.array(z.number()),
+        wind_speed_10m_max: z.array(z.number()),
+    }),
+})

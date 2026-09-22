@@ -39,4 +39,10 @@ export class EquipmentController{
         const requests = await this.EquipmentService.getRequests(id)
         res.status(200).json({requests})
     }
+
+    getWeather = async (req: Request, res: Response) => {
+        const id = String(req.params.id)
+        const weather = await this.EquipmentService.getWeather(id)
+        res.status(200).json({data: weather})
+    }
 }
