@@ -7,6 +7,7 @@ import { errorHandler } from "./middlewares/errorHandler.ts";
 import helmet from "helmet";
 import router from "./routes/index.ts";
 import {logger} from "./middlewares/logger.ts"
+import type {Request, Response} from "express"
 
 export const app: Express = express()
 
@@ -30,5 +31,8 @@ app.use(express.json({limit:JSON_SIZE_LIMIT}))
 
 app.use("/api", router)
 
+app.use((req:Request, res:Response) => {
+res.status(404).json({ error: 'Route not found' });
+});
 
 app.use(errorHandler)
