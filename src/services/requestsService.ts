@@ -7,10 +7,15 @@ import { AppError } from "../types/error.ts";
 import type { EquipmentRepository } from "../repos/equipmentRepository.ts";
 
 export class RequestsService{
+    private readonly RequestsRepository: RequestsRepository;
+    private readonly EquipmentRepository: EquipmentRepository;
+
     constructor(
-        private readonly RequestsRepository: RequestsRepository,
-        private readonly EquipmentRepository: EquipmentRepository
-    ){}
+        RequestsRepository: RequestsRepository,
+        EquipmentRepository: EquipmentRepository
+    ){
+        this.RequestsRepository = RequestsRepository;
+        this.EquipmentRepository = EquipmentRepository;}
 
     async getAll(query: RequestsQuery){
         return await this.RequestsRepository.getAll(query)

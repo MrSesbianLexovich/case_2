@@ -3,7 +3,10 @@ import { requestQuerySchema } from "../types/schemas.ts";
 import type { Request, Response } from 'express'
 
 export class RequestsController{
-    constructor(private readonly RequestsService: RequestsService){}
+    private readonly RequestsService: RequestsService;
+
+    constructor(RequestsService: RequestsService){
+        this.RequestsService = RequestsService;}
 
     getAll = async (req:Request, res: Response) => {
         const query = requestQuerySchema.parse(req.query)

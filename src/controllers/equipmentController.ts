@@ -3,7 +3,10 @@ import type {Request,Response} from 'express'
 import { equipmentQuerySchema } from "../types/schemas.ts";
 
 export class EquipmentController{
-    constructor(private readonly EquipmentService: EquipmentService){}
+    private readonly EquipmentService: EquipmentService;
+
+    constructor(EquipmentService: EquipmentService){
+        this.EquipmentService = EquipmentService;}
 
     getAll = async (req:Request, res:Response) => {
         const query = equipmentQuerySchema.parse(req.query)

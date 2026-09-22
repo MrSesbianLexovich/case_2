@@ -8,7 +8,10 @@ import { getForecast } from "../client/weatherClient.ts";
 import { ALLOWED_PRECIPITATION, ALLOWED_WIND_SPEED } from "../config/constanses.ts";
 
 export class EquipmentService{
-    constructor(private readonly EquipmentRepository: EquipmentRepository){}
+    private readonly EquipmentRepository: EquipmentRepository;
+
+    constructor(EquipmentRepository: EquipmentRepository){
+        this.EquipmentRepository = EquipmentRepository;}
 
     async getAll(query: EquipmentQuery){
         return await this.EquipmentRepository.getAll(query)
