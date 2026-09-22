@@ -6,6 +6,7 @@ import requestId from "./middlewares/requestId.ts";
 import { errorHandler } from "./middlewares/errorHandler.ts";
 import helmet from "helmet";
 import router from "./routes/index.ts";
+import {logger} from "./middlewares/logger.ts"
 
 export const app: Express = express()
 
@@ -23,6 +24,7 @@ try{
 }
 app.use(helmet())
 app.use(requestId)
+app.use(logger)
 
 
 app.use("/api", router)
