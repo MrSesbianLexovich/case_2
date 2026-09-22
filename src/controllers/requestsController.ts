@@ -10,4 +10,18 @@ export class RequestsController{
         const requests = await this.RequestsService.getAll(query)
         res.status(200).json({requests})
     }
+
+    add = async (req:Request, res:Response) => {
+        const {equipmentId, title, description, priority, plannedAt } = req.body
+        const data = {
+            equipmentId: equipmentId,
+            title: title,
+            description: description,
+            priority: priority,
+            plannedAt: plannedAt
+        }
+        const request = await this.RequestsService.add(data)
+        
+        res.status(201).json({request})
+    }
 }

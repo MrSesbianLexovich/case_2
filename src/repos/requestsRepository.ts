@@ -1,4 +1,6 @@
-import { getDb } from "../db";
+import type { z } from "zod";
+import { getDb, rewriteDb } from "../db";
+import { requestRepoSchema } from "../types/schemas";
 import type { RequestsQuery } from "../types/types";
 
 export class RequestsRepository{
@@ -19,5 +21,16 @@ export class RequestsRepository{
         const end = start + query.limit
 
         return requests.slice(start, end)
+    }
+
+    async add(request: z.infer<typeof requestRepoSchema>){
+        const db = await getDb()
+        const equipmentid = db.equipment.findIndex(equipment => equipment.id === request.equipmentId)
+        if (equipmentid === -1){
+            return undefined
+        }
+        db.requests.push(request)
+        await rewriteDb(db)
+        return request
     }
 }
