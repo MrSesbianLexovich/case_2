@@ -4,6 +4,8 @@ import { DATA_DIR, DATA_FILE } from "./config/constanses.ts";
 import {access, mkdir, writeFile} from "fs/promises"
 import requestId from "./middlewares/requestId.ts";
 import { errorHandler } from "./middlewares/errorHandler.ts";
+import helmet from "helmet";
+import router from "./routes/index.ts";
 
 export const app: Express = express()
 
@@ -19,8 +21,11 @@ try{
     }
     await writeFile(path, JSON.stringify(dataBase))
 }
-
+app.use(helmet())
 app.use(requestId)
+
+
+app.use("/api", router)
 
 
 app.use(errorHandler)
