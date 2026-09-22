@@ -1,6 +1,6 @@
 import express, { type  Express } from "express";
 import {join} from 'path'
-import { DATA_DIR, DATA_FILE } from "./config/constanses.ts";
+import { DATA_DIR, DATA_FILE, JSON_SIZE_LIMIT } from "./config/constanses.ts";
 import {access, mkdir, writeFile} from "fs/promises"
 import requestId from "./middlewares/requestId.ts";
 import { errorHandler } from "./middlewares/errorHandler.ts";
@@ -26,6 +26,7 @@ app.use(helmet())
 app.use(requestId)
 app.use(logger)
 
+app.use(express.json({limit:JSON_SIZE_LIMIT}))
 
 app.use("/api", router)
 
