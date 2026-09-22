@@ -33,4 +33,10 @@ export class EquipmentController{
         const del = await this.EquipmentService.delete(id)
         res.status(200).json({del})
     }
+
+    getRequests = async (req:Request, res:Response) => {
+        const id = String(req.params.id)
+        const requests = await this.EquipmentService.getRequests(id)
+        res.status(200).json({requests})
+    }
 }

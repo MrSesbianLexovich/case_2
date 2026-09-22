@@ -58,4 +58,9 @@ export class EquipmentService{
         const deleteEquipment = await this.EquipmentRepository.delete(id)        
         return deleteEquipment
     }
+
+    async getRequests(id: string){
+        const requests = this.EquipmentRepository.getRequests(id)
+        return requests
     }
+}
