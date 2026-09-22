@@ -37,3 +37,21 @@ export const equipmentQuerySchema = z.object({
     page: z.coerce.number().int().min(1).default(1),
     limit: z.coerce.number().int().min(1).max(100).default(20)
 });
+
+const requestPriorityTypes = z.enum(['low', 'medium', 'high', 'critical'])
+
+const requestStatusTypes = z.enum(['new', 'in_progress', 'done', 'rejected'])
+
+export const requestSchema = z.object({
+    equipmentId: z.string(),
+    title: z.string().min(5).max(120),
+    description: z.string().max(2000),
+    priority: requestPriorityTypes,
+    plannedAt: z.iso.datetime().optional(),
+})
+
+export const requestRepoSchema = requestSchema.extend({
+    id: uuid(), 
+    status:requestStatusTypes, 
+    createdAt: z.iso.datetime(), 
+    updatedAt: z.iso.datetime()})
