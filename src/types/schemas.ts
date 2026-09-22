@@ -50,12 +50,27 @@ export const requestSchema = z.object({
     plannedAt: z.iso.datetime().optional(),
 })
 
+
+
 export const requestRepoSchema = requestSchema.extend({
     id: uuid(), 
     status:requestStatusTypes, 
     createdAt: z.iso.datetime(), 
     updatedAt: z.iso.datetime()
 })
+
+export const requestQuerySchema = z.object({
+    status: requestStatusTypes.optional(),
+    priotiry: requestPriorityTypes.optional(),
+    sortBy: z.enum(['title', 'createdAt', 'status', 'priority']).default('createdAt'),
+    order: z.enum(['asc', 'desc']).default('desc'),
+    page: z.coerce.number().int().min(1).default(1),
+    limit: z.coerce.number().int().min(1).max(100).default(20)
+})
+
+export const requestPartialSchema = requestSchema.extend({id: uuid()}).partial()
+
+export const requestRepoPartialSchema = requestRepoSchema.partial()
 
 export const forecastSchema = z.object({
     latitude: z.number(),
