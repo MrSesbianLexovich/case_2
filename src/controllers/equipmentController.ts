@@ -1,10 +1,13 @@
 import type { EquipmentService } from "../services/equipmentService";
-import type Request from 'express'
+import type {Request,Response} from 'express'
+import { equipmentQuerySchema } from "../types/schemas";
 
 export class EquipmentController{
     constructor(private readonly EquipmentService: EquipmentService){}
 
     getAll = async (req:Request, res:Response) => {
-        
+        const query = equipmentQuerySchema.parse(req.query)
+        const equipment = await this.EquipmentService.getAll(query)
+        res.status(200).json({equipment})
     }
 }

@@ -7,6 +7,6 @@ export class EquipmentService{
     constructor(private readonly EquipmentRepository: EquipmentRepository){}
 
     async getAll(query: EquipmentQuery){
-        
+        return await this.EquipmentRepository.getAll(query)
     }
 }

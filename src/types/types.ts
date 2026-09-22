@@ -7,7 +7,6 @@ export type EquipmentWithId = z.infer<typeof equipmentSchema> & {
     id: string
 }
 
-
 export type Database = {
     equipment: EquipmentWithId[]
 }
