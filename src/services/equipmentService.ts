@@ -1,6 +1,6 @@
 import type { z } from "zod";
 import type { EquipmentRepository } from "../repos/equipmentRepository";
-import { equipmentSchema } from "../types/schemas";
+import { equipmentPartialSchema, equipmentSchema } from "../types/schemas";
 import type { EquipmentQuery } from "../types/types";
 import { randomUUID } from "crypto";
 import { AppError } from "../types/error";
@@ -31,5 +31,13 @@ export class EquipmentService{
             throw new AppError("EQUIPMENT_NOT_FOUND",`Оборудование с id ${id} не найдено`, 404)
         }
         return equipment
+    }
+
+    async patch(id: string, body: z.infer<typeof equipmentPartialSchema>){
+        const patch = await this.EquipmentRepository.patch(id, body)
+        if (patch === undefined){
+            throw new AppError("EQUIPMENT_NOT_FOUND",`Оборудование с id ${id} не найдено`, 404)
+        }
+        return patch
     }
 }

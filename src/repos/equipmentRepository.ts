@@ -1,6 +1,6 @@
 import type { z } from "zod";
 import { getDb, rewriteDb } from "../db";
-import { equipmentRepoSchema } from "../types/schemas";
+import { equipmentPartialSchema, equipmentRepoSchema } from "../types/schemas";
 import type { EquipmentQuery } from "../types/types";
 
 export class EquipmentRepository{
@@ -41,4 +41,25 @@ export class EquipmentRepository{
         const db = await getDb()
         return db.equipment.find(equipment => equipment.id === id)
     }
+
+    async patch(id: string, body: z.infer<typeof equipmentPartialSchema>){
+        const db = await getDb()
+        const equipmentIndex = db.equipment.findIndex(equipment => equipment.id === id)
+        if (equipmentIndex === -1){
+            return undefined
+        }
+        const currentEquipment = db.equipment[equipmentIndex]
+        if (!currentEquipment){
+            return undefined
+        }
+        const updatedEquipment = {
+            ...currentEquipment,
+            ...body,
+            id: currentEquipment.id
+        }
+        db.equipment[equipmentIndex] = updatedEquipment
+        await rewriteDb(db)
+        return updatedEquipment
+    }
+
 }
