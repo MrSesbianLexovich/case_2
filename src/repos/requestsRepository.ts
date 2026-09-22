@@ -1,6 +1,6 @@
 import type { z } from "zod";
 import { getDb, rewriteDb } from "../db";
-import { requestPartialSchema, requestRepoSchema } from "../types/schemas";
+import { requestPartialSchema, requestRepoSchema, requestStatusSchema } from "../types/schemas";
 import type { RequestsQuery } from "../types/types";
 
 export class RequestsRepository{
@@ -58,5 +58,30 @@ export class RequestsRepository{
         }
         db.requests[requestIndex] = updatedRequest
         return await rewriteDb(db)
+    }
+
+    async statusPatch(id: string, status: z.infer<typeof requestStatusSchema>){
+        const db = await getDb()
+
+        const date = new Date()
+
+        const requestIndex = db.requests.findIndex(request => request.id === id)
+
+        if (requestIndex === -1){
+            return undefined
+        }
+
+
+        const currentRequest = db.requests[requestIndex]
+
+        if (!currentRequest){
+            return undefined
+        }
+
+        const updatedRequest = {...currentRequest, status: status.status, updatedAt: date.toISOString()}
+
+        db.requests[requestIndex] = updatedRequest
+        await rewriteDb(db)
+        return updatedRequest
     }
 }

@@ -36,4 +36,11 @@ export class RequestsController{
         const patch = await this.RequestsService.patch(id,req.body)
         res.status(201).json({patch})
     }
+
+    statusPatch = async (req:Request, res:Response) => {
+        const id = String(req.params.id)
+        const status = req.body
+        const patch = await this.RequestsService.statusPatch(id, status)
+        res.status(201).json({patch})
+    }
 }

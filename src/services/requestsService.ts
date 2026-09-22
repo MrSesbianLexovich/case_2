@@ -1,6 +1,6 @@
 import type { z } from "zod";
 import type { RequestsRepository } from "../repos/requestsRepository";
-import { requestPartialSchema, requestSchema } from "../types/schemas";
+import { requestPartialSchema, requestSchema, requestStatusSchema } from "../types/schemas";
 import type { RequestsQuery } from "../types/types";
 import { randomUUID } from "crypto";
 import { AppError } from "../types/error";
@@ -58,6 +58,30 @@ export class RequestsService{
 
         const patch = await this.RequestsRepository.patch(id, updatedBody)
         return patch
+    }
+
+    async statusPatch(id:string, body: z.infer<typeof requestStatusSchema>){
+        const request = await this.RequestsRepository.getById(id)
+        
+        if (request === undefined){
+            throw new AppError("REQUEST_NOT_FOUND", `Запрос с id ${id} не найден`, 404)
+        }
+
+        if (request.status === "done" || request.status === "rejected"){
+            throw new AppError("UNABLE_TO_CHANGE_STATUS",`Невозможно изменение статуса запроса, запрос был выполнен или отклонен`,409)
+        }
+
+        if (request.status === "new" && (body.status === 'in_progress' || body.status === "rejected")){
+            const statusPatch = this.RequestsRepository.statusPatch(id, body)
+            return statusPatch
+        }
+
+        if (request.status === "in_progress" && (body.status === "done" || body.status === "rejected")){
+            const statusPatch = this.RequestsRepository.statusPatch(id, body)
+            return statusPatch
+        }else{
+            throw new AppError("UNABLE_TO_CHANGE_STATUS", `Невозможно сменить статус с ${request.status} на ${body.status}`, 409)
+        }
     }
 
 }
