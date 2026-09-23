@@ -39,7 +39,7 @@ async function fetchWithTimeout(url:URL, timeout = REQUEST_TIMEOUT_MS){
 export async function getForecast(coordinates: z.infer<typeof equipmentLocationSchema>){
     let url = new URL(WEATHER_API_URL)
     url.pathname = '/v1/forecast'
-    url.search = `latitude=${coordinates.lat}&longitude=${coordinates.lon}&daily=temperature_2m_min,temperature_2m_max,precipitation_sum,wind_speed_10m_max&forecast_days=1`
+    url.search = `latitude=${coordinates.lat}&longitude=${coordinates.lon}&daily=temperature_2m_min,temperature_2m_max,precipitation_sum,wind_speed_10m_max&forecast_days=7`
 
     const res = await fetchWithTimeout(url)
     return forecastSchema.parse(res)

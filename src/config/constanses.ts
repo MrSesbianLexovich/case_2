@@ -8,6 +8,8 @@ export const dirName = dirname(filename);
 
 dotenv.config({ quiet: true, path: resolve(dirName, '.env') });
 
+export const allowedOrigins = process.env.CORS_ORIGINS?.split(',') ?? []
+
 export const PORT = String(process.env.PORT)
 
 export const DATA_DIR = String(process.env.DATA_DIR)
