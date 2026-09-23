@@ -4,7 +4,7 @@ import { RequestsService } from "../services/requestsService.ts";
 import { RequestsController } from "../controllers/requestsController.ts";
 import { asyncHandler } from "../utils/asyncHandler.ts";
 import { validate } from "../utils/validator.ts";
-import { idSchema, requestQuerySchema, requestSchema, requestStatusSchema } from "../types/schemas.ts";
+import { idSchema, requestPartialSchema, requestQuerySchema, requestSchema, requestStatusSchema } from "../types/schemas.ts";
 import { EquipmentRepository } from "../repos/equipmentRepository.ts";
 
 const requestsRouter = Router()
@@ -31,7 +31,7 @@ requestsRouter.get("/:id",
 
 requestsRouter.patch("/:id",
     validate(idSchema, 'params'),
-    validate(requestSchema, "body"),
+    validate(requestPartialSchema, "body"),
     asyncHandler(requestsController.patch)
 )
 
