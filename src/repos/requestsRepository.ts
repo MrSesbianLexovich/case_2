@@ -56,7 +56,8 @@ export class RequestsRepository{
             ...body
         }
         db.requests[requestIndex] = updatedRequest
-        return await rewriteDb(db)
+        await rewriteDb(db)
+        return updatedRequest
     }
 
     async statusPatch(id: string, status: z.infer<typeof requestStatusSchema>){

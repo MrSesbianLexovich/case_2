@@ -39,11 +39,11 @@ function renderRequests(requests) {
 
   for (const request of requests) {
     const item = document.createElement('li');
-
     item.textContent = `
       ${request.title} —
       приоритет: ${request.priority},
-      статус: ${request.status}
+      статус: ${request.status},
+      Создан: ${request.createdAt}
     `;
 
     requestsList.append(item);
@@ -52,9 +52,8 @@ function renderRequests(requests) {
 
 loadRequestsButton.addEventListener('click', async () => {
   try {
-    const result = await getRequests();
-
-    renderRequests(result.data || []);
+    const result = await getRequests()
+    renderRequests(result.requests);
     message.textContent = 'Заявки загружены';
   } catch (error) {
     message.textContent = error.message;
