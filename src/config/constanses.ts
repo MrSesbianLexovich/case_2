@@ -19,6 +19,7 @@ export const DATA_FILE = String(process.env.DATA_FILE)
 export const RATE_LIMIT_WINDOW_MS = Number(process.env.RATE_LIMIT_WINDOW_MS)
 export const RATE_LIMIT_MAX = Number(process.env.RATE_LIMIT_MAX)
 export const JSON_SIZE_LIMIT = String(process.env.JSON_SIZE_LIMIT)
+export const URL_SIZE_LIMIT = String(process.env.URL_SIZE_LIMIT)
 
 export const REQUEST_TIMEOUT_MS = Number(process.env.REQUEST_TIMEOUT_MS)
 
