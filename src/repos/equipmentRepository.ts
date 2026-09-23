@@ -20,7 +20,7 @@ export class EquipmentRepository{
 
         const start = (query.page - 1) * query.limit
         const end = start + query.limit
-
+        console.log(equipment.slice(start, end))
         return equipment.slice(start, end)
     }
 

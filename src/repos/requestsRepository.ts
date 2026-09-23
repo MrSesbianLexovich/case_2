@@ -19,7 +19,6 @@ export class RequestsRepository{
 
         const start = (query.page - 1) * query.limit
         const end = start + query.limit
-
         return requests.slice(start, end)
     }
 

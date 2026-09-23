@@ -21,7 +21,7 @@ try{
     await mkdir(DATA_DIR)
     const dataBase = {
         "equipment": [],
-        "maintenanceRequests": []
+        "requests": []
     }
     await writeFile(path, JSON.stringify(dataBase))
 }

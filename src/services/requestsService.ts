@@ -22,6 +22,12 @@ export class RequestsService{
     }
 
     async add(body: z.infer<typeof requestSchema>){
+        const equipment = await this.EquipmentRepository.getById(body.equipmentId);
+
+        if (equipment === undefined) {
+            throw new AppError("EQUIPMENT_NOT_FOUND",`Оборудование с id ${body.equipmentId} не найдено`,404,);
+        }
+
         const date = new Date()
         const id = randomUUID()
         const request = {
@@ -39,7 +45,7 @@ export class RequestsService{
         if (request === undefined){
             throw new AppError("REQUEST_NOT_FOUND", `Запрос с id ${id} не найден`, 404)
         }
-        return 
+        return request
     }
 
     async patch(id:string, body: z.infer<typeof requestPartialSchema>){
@@ -77,12 +83,12 @@ export class RequestsService{
         }
 
         if (request.status === "new" && (body.status === 'in_progress' || body.status === "rejected")){
-            const statusPatch = this.RequestsRepository.statusPatch(id, body)
+            const statusPatch = await this.RequestsRepository.statusPatch(id, body)
             return statusPatch
         }
 
         if (request.status === "in_progress" && (body.status === "done" || body.status === "rejected")){
-            const statusPatch = this.RequestsRepository.statusPatch(id, body)
+            const statusPatch = await this.RequestsRepository.statusPatch(id, body)
             return statusPatch
         }else{
             throw new AppError("UNABLE_TO_CHANGE_STATUS", `Невозможно сменить статус с ${request.status} на ${body.status}`, 409)
