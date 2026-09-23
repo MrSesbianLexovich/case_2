@@ -4,7 +4,8 @@
   "description": "",
   "main": "",
   "scripts": {
-    "start": "node src/server.ts"
+    "start": "node src/server.ts",
+    "frontend": "serve frontend -l 5173"
   },
   "repository": {
     "type": "git",
@@ -29,6 +30,7 @@
   "devDependencies": {
     "@types/cors": "^2.8.19",
     "@types/express": "^5.0.6",
+    "serve": "^14.2.6",
     "typescript": "^7.0.2"
   }
 }
