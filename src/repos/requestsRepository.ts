@@ -19,7 +19,6 @@ export class RequestsRepository{
 
         const start = (query.page - 1) * query.limit
         const end = start + query.limit
-
         return requests.slice(start, end)
     }
 
@@ -57,7 +56,8 @@ export class RequestsRepository{
             ...body
         }
         db.requests[requestIndex] = updatedRequest
-        return await rewriteDb(db)
+        await rewriteDb(db)
+        return updatedRequest
     }
 
     async statusPatch(id: string, status: z.infer<typeof requestStatusSchema>){
