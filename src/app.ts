@@ -45,14 +45,13 @@ app.use(cors({
     allowedHeaders: ['Content-Type', 'Accept', 'X-Request-Id'],
 }));
 
-app.use(rateLimiter)
+
 app.use(requestId)
 app.use(logger)
 
 app.use(express.json({limit:JSON_SIZE_LIMIT}))
 app.use(express.urlencoded({limit:URL_SIZE_LIMIT}))
-
-app.use("/api", router)
+app.use("/api",rateLimiter, router)
 
 app.use((req:Request, res:Response) => {
     res.status(404).json({ error: 'Route not found' });
