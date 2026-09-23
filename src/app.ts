@@ -7,10 +7,9 @@ import { errorHandler } from "./middlewares/errorHandler.ts";
 import helmet from "helmet";
 import router from "./routes/index.ts";
 import {logger} from "./middlewares/logger.ts"
-import type {NextFunction, Request, Response} from "express"
+import type {Request, Response} from "express"
 import cors from 'cors'
-import { AppError } from "./types/error.ts";
-import e from "cors";
+import { rateLimiter } from "./middlewares/rateLimiter.ts";
 
 export const app: Express = express()
 
@@ -27,7 +26,7 @@ try{
     await writeFile(path, JSON.stringify(dataBase))
 }
 
-
+app.use(helmet())
 app.use(cors({
     origin(origin, callback) {
     
@@ -46,7 +45,7 @@ app.use(cors({
     allowedHeaders: ['Content-Type', 'Accept', 'X-Request-Id'],
 }));
 
-app.use(helmet())
+app.use(rateLimiter)
 app.use(requestId)
 app.use(logger)
 
