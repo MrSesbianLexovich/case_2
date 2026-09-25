@@ -206,6 +206,37 @@ localhost:3000/api/equipment?status=maintenance&?page=1&limit=10&order=asc&type=
 }
 ```
 
+POST запрос
+
+localhost:3000/api/requests
+
+Тело запроса:
+```
+{
+    "equipmentId": "c5282fda-1fe8-4900-b719-2a17d53aa3be",
+    "title": "valid Title",
+    "description": "description",
+    "priority": "low",
+    "plannedAt": "2025-01-20T08:00:00.000Z"
+}
+```
+
+Ответ со статусом 201:
+```
+{
+  "request": {
+    "equipmentId": "c5282fda-1fe8-4900-b719-2a17d53aa3be",
+    "title": "valid Title",
+    "description": "description",
+    "priority": "low",
+    "plannedAt": "2025-01-20T08:00:00.000Z",
+    "createdAt": "2026-09-21T00:52:30.133Z",
+    "updatedAt": "2026-09-21T00:52:30.133Z",
+    "id": "556108e7-be71-48ab-be75-641a0ed0bc1e",
+    "status": "new"
+  }
+}
+```
 
 ## Правила безопасности
 Были реализованы следующие меры безопасности:
@@ -296,9 +327,9 @@ URL_SIZE_LIMIT = 10kb
 │   ├── config
 │   │   └── constanses.ts             #  Экспорт содержимого .env в константы 
 │   ├── controllers
-│   │   ├── equipmentController.ts    #  
-│   │   ├── healthController.ts       #
-│   │   └── requestsController.ts     #
+│   │   ├── equipmentController.ts    #  Контроллер запросов для /api/equipment
+│   │   ├── healthController.ts       #  Контроллер запросов для /api/health
+│   │   └── requestsController.ts     #  Контроллер запросов для /api/requests
 │   ├── db
 │   │   └── index.ts                  #  Функции для взаимодействия с "Базой данных"
 │   ├── middlewares
