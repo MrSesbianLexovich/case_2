@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ru">
+    <head>
+
+    </head>
+    <body>
+        <main>
+            <h1>Заявки на обслуживание</h1>
+
+            <button id="loadRequestsButton">
+                Загрузить заявки
+            </button>
+
+            <ul id="requestsList"></ul>
+
+            <h2>Создать заявку</h2>
+
+            <form id="requestForm">
+                <input
+                    id="equipmentId"
+                    name="equipmentId"
+                    placeholder="ID оборудования"
+                    required
+                >
+
+                <input
+                    id="title"
+                    name="title"
+                    placeholder="Название заявки"
+                    required
+                >
+
+                <textarea
+                    id="description"
+                    name="description"
+                    placeholder="Описание"
+                ></textarea>
+
+                <select id="priority" name="priority">
+                    <option value="low">Низкий</option>
+                    <option value="medium">Средний</option>
+                    <option value="high">Высокий</option>
+                    <option value="critical">Критический</option>
+                </select>
+
+                <button type="submit">Создать</button>
+            </form>
+
+            <p id="message"></p>
+        </main>
+
+        <script src="/js/app.js"></script>
+    </body>
+</html>
