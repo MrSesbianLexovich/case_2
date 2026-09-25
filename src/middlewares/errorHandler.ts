@@ -11,8 +11,6 @@ export function errorHandler(error: AppError, req:Request, res:Response, next:Ne
     });
     }
 
-    console.log(error)
-
     return res.status(500).json({
         errorCode: 'INTERNAL_SERVER_ERROR',
         message: 'Внутренняя ошибка сервера',
