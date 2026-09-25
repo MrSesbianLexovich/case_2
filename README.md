@@ -36,6 +36,8 @@ npm run frontend
 
 ## Переменные окружения
 
+.env необходимо расположить в /src/config
+
 ### .env.example:
 ```
 CORS_ORIGINS = http://localhost:5173            # CORS origins
@@ -325,6 +327,7 @@ URL_SIZE_LIMIT = 10kb
 │   ├── client
 │   │   └── weatherClient.ts          #  Клиент внешнего погодного API.
 │   ├── config
+│   │   ├── .env                      #  Переменные окружения
 │   │   └── constanses.ts             #  Экспорт содержимого .env в константы 
 │   ├── controllers
 │   │   ├── equipmentController.ts    #  Контроллер запросов для /api/equipment
